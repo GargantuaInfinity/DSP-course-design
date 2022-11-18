@@ -1,6 +1,5 @@
-%将信息隐写到指定序列中,返回含有隐藏信息的序列
 function out=LSB(size,hidedata,Carrierdata)
-L0=length(Carrierdata)-6000;%隐写信息的起始位置
+L0=length(Carrierdata)-6000;
 temdata=Carrierdata;
 if size(1)*size(2)>L0
     error('隐藏的信息太大了');
