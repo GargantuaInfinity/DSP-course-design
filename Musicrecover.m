@@ -1,0 +1,19 @@
+[recomus,fs]=audioread('music_with_secret.wav','double');
+fileIDkey=fopen('key.bin','rb');
+key=fread(fileIDkey,'double');
+fclose(fileIDkey);
+recover=complex(recomus,key);
+fftrecover=fft(recover);
+absrecover=abs(fftrecover);
+figure;
+subplot(2,1,1);
+plot(0:L-1,real(recover));
+title('恢复后的时域波形');
+subplot(2,1,2);
+plot(0:L-1,absrecover);%打印恢复后的频谱
+title('恢复后的频谱');
+intabsrecover=round(absrecover*c);
+dataimg=LSBrecover(intabsrecover,szdataimg);
+figure;
+imshow(dataimg);
+title('恢复后的图像 c=1');
